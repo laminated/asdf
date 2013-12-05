@@ -1,50 +1,47 @@
 import java.util.ArrayList;
 
-
+/*Node class that represent nodes or vertices on a graph,
+ holds references to other nodes and it's own name
+*/
 public class Node{
 
 //name of node
 protected String name;
 private ArrayList<String> references;
-//private HashMap<Node,String> neighbour;
-	
+
+	/*Creates a node*/	
 	public Node(String nodeName){
 		this.name = nodeName;
 		this.references = new ArrayList<String>();
 	}
 
+	/*getter method for name
+	@modifies chances name of node*/
 	public String getName(){
 		return this.name;
 	}
 
+	/*Adds reference to node, checks for existence of node, if !exist, then add reference.
+	@param nodeName -> name of node to be added
+	@modifies changes list of nodes in ArrayList<String> references*/
 	public void addRef(Node nodeName){
 		if ((this.refExists(nodeName.name))==false){
-			references.add(nodeName.name);
-			//Adds to HashMap<String, ArrayList> within Edge object connections twice, once for each node.
-			//connections.connect(nodeName.getName(),this.getName());
+			references.add(nodeName.name);		
 		}
 		else{
-			//System.out.println(references.get(0));
-			return;
-			//connections.connect(nodeName.getName(),this.getName());
-		}
+				return;
+			}
 	}
-
+	/*Checks for existence of reference within node
+	@param takes name of node as parameter
+	@returns returns boolean true if exists, else returns false*/
 	public boolean refExists(String nodeName){
 		return references.contains(nodeName);
 		}
 
+	/*@Returns ArrayList containing all references to other nodes.*/
 	public ArrayList<String> getReferences(){
 		return references;
 	}
-
-	public String printRefs(){
-		for (String x : references){
-			System.out.println(x);
-		}
-		return "";
-	}
-
-
 
 }	
