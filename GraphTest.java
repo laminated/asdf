@@ -12,6 +12,8 @@ public class GraphTest{
  			marvelUniverse.createNode("Tony Wong");
  			marvelUniverse.createNode("Princess Leia");
  			marvelUniverse.nodeJoin("Tony Wong", "Princess Leia", "Lord of the Rings");
+ 			marvelUniverse.nodeJoin("Tony Wong", "Darth Vader", "Smelly Pigs from Mars");
+ 			System.out.println(marvelUniverse.breadthFirstSearch("Darth Vader", "Princess Leia"));
  			//marvelUniverse.allNodes();
 			System.out.println(marvelUniverse.isAdjacent("Tony Wong","Princess Leia"));
 			System.out.println(marvelUniverse.isAdjacent("M'SHULLA","FROST, CARMILLA"));
