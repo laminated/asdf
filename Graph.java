@@ -145,7 +145,8 @@ public class Graph
 
 			for(int i=1;    i<splitString.length;    i += 2){
 				if( !splitString[i].equals(currentBook)){
-					String[] charsInBook = (String[])currentBookCharacters.toArray();
+                    String[] charsInBook = new String[currentBookCharacters.size()];
+					charsInBook = currentBookCharacters.toArray(charsInBook);
 					for(int j=0;j<charsInBook.length; j++){
 						for(int k=j+1;  k<charsInBook.length;k++){
                                
