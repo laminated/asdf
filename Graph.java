@@ -36,20 +36,20 @@ public class Graph
 
             for(String neighbour : currentNode.getReferences()){
                 if(neighbour.equals(secondNode)){
-                    path = neighbour + ";" + secondNode;
+                    path = neighbour + "^" + secondNode;
                     break;
                 }else{
-                    queue.add(currentNodeStringPath + neighbour);
+                    queue.add(currentNodeStringPath + "^" + neighbour);
                 }
             }
         }
 
-        String[] characters = path.split(";");
+        String[] characters = path.split("^");
         return characters;
  	}
 
  	public String getCurrentNodeName(String nodeName){
-        int k = nodeName.lastIndexOf(';');
+        int k = nodeName.lastIndexOf('^');
         if(k<0){
             return nodeName;
         }else{
@@ -156,6 +156,7 @@ public class Graph
 						}
 					}
 					currentBookCharacters.clear();
+                    currentBookCharacters.add(splitString[i-1]);
 					currentBook = splitString[i];
 				}else{
 					currentBookCharacters.add(splitString[i-1]);
