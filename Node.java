@@ -34,6 +34,10 @@ private ArrayList<String> references;
 		return references.contains(nodeName);
 		}
 
+	public ArrayList<String> getReferences(){
+		return references;
+	}
+
 	public String printRefs(){
 		for (String x : references){
 			System.out.println(x);

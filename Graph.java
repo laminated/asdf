@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -7,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.concurrent.LinkedBlockingQueue;
 
 
 public class Graph
@@ -14,16 +16,46 @@ public class Graph
 	
 	private HashMap<String, Node> nodeList;
 	private HashMap<String, Edge> edgeList;
+	private HashMap<String,ArrayList> titleList;
 	
 
 	public Graph(){
 		this.nodeList = new HashMap<String, Node>();
 		this.edgeList = new HashMap<String, Edge>();
+		this.titleList = new HashMap<String, ArrayList>();
 		}
 
-	public void breadthFirstSearch(String firstNode, String secondNode){
+	public String[] breadthFirstSearch(String firstNode, String secondNode){
+        String path = "";
+        Queue<String> queue = new LinkedBlockingQueue<String>();
+        queue.add(firstNode);
 
-	}
+        while (!queue.isEmpty()){
+            String currentNodeStringPath = queue.remove();
+            Node currentNode = nodeList.get(getCurrentNodeName(currentNodeStringPath));
+
+            for(String neighbour : currentNode.getReferences()){
+                if(neighbour.equals(secondNode)){
+                    path = neighbour + ";" + secondNode;
+                    break;
+                }else{
+                    queue.add(currentNodeStringPath + neighbour);
+                }
+            }
+        }
+
+        String[] characters = path.split(";");
+        return characters;
+ 	}
+
+ 	public String getCurrentNodeName(String nodeName){
+        int k = nodeName.lastIndexOf(';');
+        if(k<0){
+            return nodeName;
+        }else{
+            return nodeName.substring(k+1);
+        }
+    }
 
 	public void allNodes(){
 		for (String entry : nodeList.keySet()) {
@@ -43,6 +75,7 @@ public class Graph
 		String temp = firstNode + "^" + secondNode;
 		createNode(firstNode);
 		createNode(secondNode);
+		System.out.println(nodeList.get(firstNode).getName());
 		(nodeList.get(firstNode)).addRef(nodeList.get(secondNode));
 		(nodeList.get(secondNode)).addRef(nodeList.get(firstNode));
 		if (secondNode.compareTo(firstNode) > 0)
@@ -73,6 +106,14 @@ public class Graph
 		return false;
 	}
 
+/*	public ArrayList charsToList(String someArr[], int index){
+		ArrayList<String> sameBookChars = new ArrayList<String>();
+		for (index;someArr[index+1]!=someArr[index+3];index=index+2){
+				sameBookChars.add(splitString[index]);
+			}
+		return sameBookChars;
+	}*/
+
 	public void stringToGraph() throws IOException{
 		try {
 			File file = new File("labeled_edges.tsv");
@@ -96,35 +137,85 @@ public class Graph
 			}
 
 			//Node Creation
-			ArrayList<String> sameBook = new ArrayList<String>();
+			//ArrayList<String> sameBook = new ArrayList<String>();
 
-			for (int i=0;i<splitString.length;i=i+2){
-				createNode(splitString[i]);
+			String currentBook = "";
+			//String[] currentBookCharacters;
+			ArrayList<String> currentBookCharacters = new ArrayList<String>();
+
+			for(int i=1;    i<splitString.length;    i += 2){
+				if( !splitString[i].equals(currentBook)){
+					String[] charsInBook = (String[])currentBookCharacters.toArray();
+					for(int j=0;j<charsInBook.length; j++){
+						for(int k=j+1;  k<charsInBook.length;k++){
+                               
+								nodeJoin(charsInBook[j],charsInBook[k],currentBook);
+                               // add edge between charsInBooks[j]
+                               // and charsInBook[k]
+						}
+					}
+					currentBookCharacters.clear();
+					currentBook = splitString[i];
+				}else{
+					currentBookCharacters.add(splitString[i-1]);
+				} 
+
 			}
 
+
+
+
+
+
+
+
+/*			for (int i=0;i<splitString.length;i=i+2){
+				createNode(splitString[i]);
+			}
+*/
 /*			nodeJoin(splitString[0],splitString[2],splitString[1]);
 			nodeJoin(splitString[0],splitString[4],splitString[1]);
 			nodeJoin(splitString[0],splitString[6],splitString[1]);
 			nodeJoin(splitString[0],splitString[8],splitString[1]);
-			nodeJoin(splitString[0],splitString[10],splitString[1]);*/
+			nodeJoin(splitString[0],splitString[10],splitString[1])
+			nodeJoin(splitString[2],splitString[4],splitString[1])
+			nodeJoin(splitString[2],splitString[6],splitString[1])
+			nodeJoin(splitString[2],splitString[8],splitString[1])
+			nodeJoin(splitString[2],splitString[10],splitString[1])
+			nodeJoin(splitString[8],splitString[10],splitString[1])
+			nodeJoin(splitString[12],splitString[14],splitString[2])
+			nodeJoin(splitString[14],splitString[16],splitString[2])
+			;*/
 			
 
-			for (int i=1;i<splitString.length-1;i=i+2){
+/*			for (int i=1;i<splitString.length-1;i=i+2){
 				if (!(splitString[i].equals(splitString[i+2]))){
 					sameBook.add(splitString[i]);
-					
 				}
+			}
+			int q=0;
+			for (int s=0;s<sameBook.size();sameBook){
+
+				titleList.put(sameBook,charsToList(splitString[],q))
 			}
 
 			int w=0;
 			int z=0;
-			while ((z<sameBook.size()-500) || w< (splitString.length-500)){
-				for (int i=2;i<splitString.length-500;i=i+2){
-					nodeJoin(splitString[w],splitString[i],sameBook.get(z));
+			int iter=2;
+			while ((z<sameBook.size()-1) ||
+
+			while( w< (splitString.length-1)){
+				while ((sameBook.get(z)).equals(splitString[iter-1])){
+				
+					nodeJoin(splitString[w],splitString[iter],sameBook.get(z));
+					iter=iter+2;
 				}
+				w=w+2;
+				iter=w+2;
+
 				z++;
-				w++;
-			}
+				
+			}*/
 
 
 
