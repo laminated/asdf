@@ -17,6 +17,10 @@ public class GraphTest{
  			for (int i=0;i<test.length;i++){
  				System.out.println(test[i]);
  			}
+ 			String[] testTwo = (marvelUniverse.breadthFirstSearch("WOLVERINE/LOGAN", "GREY, JEAN | MUTANT "));
+ 			for (int i=0;i<testTwo.length;i++){
+ 				System.out.println(testTwo[i]);
+ 			}
 			System.out.println(marvelUniverse.isAdjacent("Tony Wong","Princess Leia"));
 			System.out.println(marvelUniverse.isAdjacent("M'SHULLA","FROST, CARMILLA"));
  			System.out.println(marvelUniverse.isAdjacent("FROST, CARMILLA","24-HOUR MAN/EMMANUEL"));
