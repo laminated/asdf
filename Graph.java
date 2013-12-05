@@ -44,8 +44,25 @@ public class Graph
             }
         }
 
-        String[] characters = path.split("_");
-        return characters;
+        if(path.isEmpty()){
+            return null;
+        }else{
+            String[] characters = path.split("_");
+            ArrayList<String> fullPath = new ArrayList<String>();
+
+            for(int i=0;i<characters.length-1;i++){
+                Edge e = edgeList.get(characters[i] + "_" + characters[i+1]);
+                // small stupid way to get around the ordering of the name
+                if(e == null){
+                    e = edgeList.get(characters[i+1] + "_" + characters[i]);
+                }
+
+                fullPath.add(characters[i]);
+                fullPath.add(e.edgeName());
+            }
+            fullPath.add(characters[characters.length-1]);
+            return fullPath.toArray(new String[fullPath.size()]);
+        }
  	}
 
  	public String getCurrentNodeName(String nodeName){
