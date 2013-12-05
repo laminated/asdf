@@ -27,23 +27,26 @@ public class Graph
 
 	public ArrayList<String> bfs(String rootNode, String endNode){
 		// BFS uses Queue data structure
-		ArrayList<String> path= new ArrayList<String>();
+		ArrayList<String> previousPath= new ArrayList<String>();
+		ArrayList<String> updatedPath= new ArrayList<String>();
+		HashMap<String, ArrayList<String>> path = new HashMap<String, ArrayList<String>>();
 		Queue queue = new LinkedList();
 		queue.add(exposeNode(rootNode));
-		path.add(exposeNode(rootNode).getName());
+		previousPath.add(rootNode);
+		path.put(rootNode,updatedPath);
 		exposeNode(rootNode).visited = true;
 		while(!queue.isEmpty()) {
 			Node node = (Node)queue.remove();
-			//Node child=null;
-			//while((child=getUnvisitedChildNode(node))!=null) {
 			for( String child : (node.getReferences()) ) {
 				if (exposeNode(child).visited)
 					continue;
 				exposeNode(child).visited=true;
 				queue.add(exposeNode(child));
-				path.add(exposeNode(child).getName());
-				if ((exposeNode(child).getName()).equals(endNode)){
-					return path;
+				updatedPath = (ArrayList<String>)previouspath.clone();
+				updatedPath.add(child);
+				path.add(child,updatedPath());
+				if ((child).equals(endNode)){
+					return updatedPath.get(child);
 				}
 			}
 		}

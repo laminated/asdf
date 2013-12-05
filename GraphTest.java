@@ -43,14 +43,14 @@ public class GraphTest{
  			for (String s: test){
  				System.out.println(s);
  			}
- 			ArrayList<String> testOne = (marvelUniverse.bfs("SPIDER-MAN/PETER PAR", "VENOM/EDDIE BROCK"));
+ 			/*ArrayList<String> testOne = (marvelUniverse.bfs("SPIDER-MAN/PETER PAR", "VENOM/EDDIE BROCK"));
  			for (String s: testOne){
  				System.out.println(s);
- 			}
- 			ArrayList<String> testTwo = (marvelUniverse.bfs("WOLVERINE/LOGAN ", "GREY, JEAN | MUTANT "));
+ 			}*/
+ 			/*ArrayList<String> testTwo = (marvelUniverse.bfs("WOLVERINE/LOGAN ", "GREY, JEAN | MUTANT "));
  			for (String s: testTwo){
  				System.out.println(s);
- 			}
+ 			}*/
 			System.out.println(marvelUniverse.isAdjacent("Tony Wong","Princess Leia"));
 			System.out.println(marvelUniverse.isAdjacent("M'SHULLA","FROST, CARMILLA"));
  			System.out.println(marvelUniverse.isAdjacent("FROST, CARMILLA","24-HOUR MAN/EMMANUEL"));
