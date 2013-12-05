@@ -37,10 +37,12 @@ public class Graph
 			//Node child=null;
 			//while((child=getUnvisitedChildNode(node))!=null) {
 			for( String child : (node.getReferences()) ) {
+				if (exposeNode(child).visited)
+					continue;
 				exposeNode(child).visited=true;
 				queue.add(exposeNode(child));
 				path.add(exposeNode(child).getName());
-				if (exposeNode(child).getName()==endNode){
+				if ((exposeNode(child).getName()).equals(endNode)){
 					return path;
 				}
 			}

@@ -39,6 +39,10 @@ public class GraphTest{
  			for (String s : testZero){
  				System.out.println(s);
  			}
+ 			ArrayList<String> test = (marvelUniverse.bfs("FROST, CARMILLA", "KILLRAVEN/JONATHAN R"));
+ 			for (String s: test){
+ 				System.out.println(s);
+ 			}
  			ArrayList<String> testOne = (marvelUniverse.bfs("SPIDER-MAN/PETER PAR", "VENOM/EDDIE BROCK"));
  			for (String s: testOne){
  				System.out.println(s);
