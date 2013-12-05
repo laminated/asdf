@@ -44,4 +44,12 @@ private ArrayList<String> references;
 		return references;
 	}
 
+	public int numRefs(){
+		int temp=0;
+		for (String s : references){
+			temp++;
+		}
+		return temp;
+	}
+
 }	

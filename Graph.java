@@ -77,6 +77,26 @@ public class Graph
         }
     }
 
+    public ArrayList mostReferences(){
+    	int temp=0;
+    	int currentMax=0;
+    	ArrayList<String> maxRefs = new ArrayList<String>();
+    	for (String entry : nodeList.keySet()) {
+    		Node tempNode = nodeList.get(entry);
+    		temp = tempNode.numRefs();
+    		if (temp > currentMax){
+    			currentMax = temp;
+    			maxRefs.clear();
+    			maxRefs.add((nodeList.get(entry)).getName());
+    		}
+    		else if (temp == currentMax){
+    			maxRefs.add((nodeList.get(entry)).getName());
+    		}
+    	}
+    	return maxRefs;
+    } 
+
+
     //Method used for test, prints all nodes.
 	public void allNodes(){
 		for (String entry : nodeList.keySet()) {

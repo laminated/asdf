@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class GraphTest{
 	
 	public static void main(String [] args)
@@ -9,11 +11,20 @@ public class GraphTest{
 			 	e.printStackTrace();
  			}
  			
+ 			ArrayList<String> centralCandidates = marvelUniverse.mostReferences();
+ 			for (String s : centralCandidates){
+ 				System.out.println(s);
+ 			}
  			marvelUniverse.createNode("Tony Wong");//node creation works
  			marvelUniverse.createNode("Princess Leia");
  			marvelUniverse.nodeJoin("Tony Wong", "Princess Leia", "Lord of the Rings");
- 			marvelUniverse.nodeJoin("Tony Wong", "Darth Vader", "Smelly Pigs from Mars");//node creation works via nodeJoin
- 			String[] test = (marvelUniverse.breadthFirstSearch("Darth Vader", "Princess Leia"));
+ 			marvelUniverse.nodeJoin("Tony Wong", "Darth Vader", "book1");
+ 			marvelUniverse.nodeJoin("Johnny Depp", "Darth Vader", "book2");
+ 			marvelUniverse.nodeJoin("Tony Stark", "Darth Vader", "book3");
+ 			marvelUniverse.nodeJoin("Alex Lam", "Darth Vader", "book4");
+ 			marvelUniverse.nodeJoin("Darth Vader", "Emperor Palpatine", "book5");
+ 			marvelUniverse.nodeJoin("Emperor Palpatine", "FrederickTomy", "book6");//node creation works via nodeJoin
+ 			String[] test = (marvelUniverse.breadthFirstSearch("FrederickTomy", "Johnny Depp"));
  			for (int i=0;i<test.length;i++){
  				System.out.println(test[i]);
  			}
