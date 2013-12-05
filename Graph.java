@@ -2,6 +2,7 @@ import java.util.HashMap;
 import java.util.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.StringTokenizer;
 import java.lang.StringBuilder;
 import java.io.BufferedReader;
@@ -23,11 +24,45 @@ public class Graph
 		this.edgeList = new HashMap<String, Edge>();
 		}
 
+
+	public ArrayList<String> bfs(String rootNode, String endNode){
+		// BFS uses Queue data structure
+		ArrayList<String> path= new ArrayList<String>();
+		Queue queue = new LinkedList();
+		queue.add(exposeNode(rootNode));
+		path.add(exposeNode(rootNode).getName());
+		exposeNode(rootNode).visited = true;
+		while(!queue.isEmpty()) {
+			Node node = (Node)queue.remove();
+			//Node child=null;
+			//while((child=getUnvisitedChildNode(node))!=null) {
+			for( String child : (node.getReferences()) ) {
+				exposeNode(child).visited=true;
+				queue.add(exposeNode(child));
+				path.add(exposeNode(child).getName());
+				if (exposeNode(child).getName()==endNode){
+					return path;
+				}
+			}
+		}
+		// Clear visited property of nodes
+		clearNodes();
+		return null;
+		}
+
+
+
+	public void clearNodes(){
+		for (String entry : nodeList.keySet()) {
+			exposeNode(entry).visited=false;
+		}
+	}
+
 	/*BFS implementation
 	@params node1, node2, edge that connects them
 	@modifies the nodes and info stored in them, queue within BFS
 	@returns array of strings holding shortest path*/
-	public String[] breadthFirstSearch(String firstNode, String secondNode){
+	/*public String[] breadthFirstSearch(String firstNode, String secondNode){
         String path = "";
         Queue<String> queue = new LinkedBlockingQueue<String>();
         queue.add(firstNode);
@@ -83,7 +118,7 @@ public class Graph
         }else{
             return nodeName.substring(k+1);
         }
-    }
+    }*/
 
     public ArrayList mostReferences(){
     	int temp=0;
@@ -104,6 +139,9 @@ public class Graph
     	return maxRefs;
     } 
 
+    public Node exposeNode(String nodeName){
+    	return nodeList.get(nodeName);
+    }
 
     //Method used for test, prints all nodes.
 	public void allNodes(){

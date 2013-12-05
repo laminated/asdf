@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.*;
 
 /*Node class that represent nodes or vertices on a graph,
  holds references to other nodes and it's own name
@@ -8,6 +10,15 @@ public class Node{
 //name of node
 protected String name;
 private ArrayList<String> references;
+public boolean visited=false;
+
+Comparator<Object> lexicographically = new Comparator<Object>() {  
+  
+  public int compare(Object o1, Object o2) {  
+    return o1.toString().compareTo(o2.toString());  
+  }  
+};  
+
 
 	/*Creates a node*/	
 	public Node(String nodeName){
@@ -41,6 +52,7 @@ private ArrayList<String> references;
 
 	/*@Returns ArrayList containing all references to other nodes.*/
 	public ArrayList<String> getReferences(){
+		Collections.sort(references, lexicographically);
 		return references;
 	}
 

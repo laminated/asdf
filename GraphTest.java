@@ -11,10 +11,21 @@ public class GraphTest{
 			 	e.printStackTrace();
  			}
  			
+ 			//Most Central Character
  			ArrayList<String> centralCandidates = marvelUniverse.mostReferences();
  			for (String s : centralCandidates){
  				System.out.println(s);
  			}
+
+ 			/*//Test of sorted Reference output
+ 			ArrayList<String> centralCandidates = marvelUniverse.mostReferences();
+ 			for (String s : centralCandidates){
+ 				for (String x : (marvelUniverse.exposeNode(s)).getReferences()){
+ 				System.out.println(x);
+// 				System.out.println(s);
+ 				}
+ 			}*/
+
  			marvelUniverse.createNode("Tony Wong");//node creation works
  			marvelUniverse.createNode("Princess Leia");
  			marvelUniverse.nodeJoin("Tony Wong", "Princess Leia", "Lord of the Rings");
@@ -24,17 +35,17 @@ public class GraphTest{
  			marvelUniverse.nodeJoin("Alex Lam", "Darth Vader", "book4");
  			marvelUniverse.nodeJoin("Darth Vader", "Emperor Palpatine", "book5");
  			marvelUniverse.nodeJoin("Emperor Palpatine", "FrederickTomy", "book6");//node creation works via nodeJoin
- 			String[] test = (marvelUniverse.breadthFirstSearch("FrederickTomy", "Johnny Depp"));
- 			for (int i=0;i<test.length;i++){
- 				System.out.println(test[i]);
+ 			ArrayList<String> testZero = (marvelUniverse.bfs("FrederickTomy", "Johnny Depp"));
+ 			for (String s : testZero){
+ 				System.out.println(s);
  			}
- 			String[] testZero = (marvelUniverse.breadthFirstSearch("SPIDER-MAN/PETER PAR", "VENOM/EDDIE BROCK"));
- 			for (int i=0;i<testZero.length;i++){
- 				System.out.println(testZero[i]);
+ 			ArrayList<String> testOne = (marvelUniverse.bfs("SPIDER-MAN/PETER PAR", "VENOM/EDDIE BROCK"));
+ 			for (String s: testOne){
+ 				System.out.println(s);
  			}
- 			String[] testTwo = (marvelUniverse.breadthFirstSearch("WOLVERINE/LOGAN ", "GREY, JEAN | MUTANT "));
- 			for (int i=0;i<testTwo.length;i++){
- 				System.out.println(testTwo[i]);
+ 			ArrayList<String> testTwo = (marvelUniverse.bfs("WOLVERINE/LOGAN ", "GREY, JEAN | MUTANT "));
+ 			for (String s: testTwo){
+ 				System.out.println(s);
  			}
 			System.out.println(marvelUniverse.isAdjacent("Tony Wong","Princess Leia"));
 			System.out.println(marvelUniverse.isAdjacent("M'SHULLA","FROST, CARMILLA"));
