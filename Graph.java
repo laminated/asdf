@@ -75,7 +75,6 @@ public class Graph
 		String temp = firstNode + "_" + secondNode;
 		createNode(firstNode);
 		createNode(secondNode);
-		System.out.println(nodeList.get(firstNode).getName());
 		(nodeList.get(firstNode)).addRef(nodeList.get(secondNode));
 		(nodeList.get(secondNode)).addRef(nodeList.get(firstNode));
 		if (secondNode.compareTo(firstNode) > 0)
