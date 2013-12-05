@@ -36,12 +36,20 @@ public class Graph
             String currentNodeStringPath = queue.remove();
             Node currentNode = nodeList.get(getCurrentNodeName(currentNodeStringPath));
 
+
             for(String neighbour : currentNode.getReferences()){
+
                 if(neighbour.equals(secondNode)){
                     path = currentNodeStringPath + "_" + secondNode;
                     break;
-                }else{
-                    queue.add(currentNodeStringPath + "_" + neighbour);
+
+                // this leads to a cycle - in which we should stop looking for this path
+                }else if(currentNodeStringPath.contains(neighbour)){}
+                else{
+                    String newPath = currentNodeStringPath + "_" + neighbour;
+                    if(!queue.contains(newPath)){
+                        queue.add(newPath);
+                    }
                 }
             }
         }
