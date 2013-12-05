@@ -36,20 +36,20 @@ public class Graph
 
             for(String neighbour : currentNode.getReferences()){
                 if(neighbour.equals(secondNode)){
-                    path = neighbour + "^" + secondNode;
+                    path = currentNodeStringPath + "_" + secondNode;
                     break;
                 }else{
-                    queue.add(currentNodeStringPath + "^" + neighbour);
+                    queue.add(currentNodeStringPath + "_" + neighbour);
                 }
             }
         }
 
-        String[] characters = path.split("^");
+        String[] characters = path.split("_");
         return characters;
  	}
 
  	public String getCurrentNodeName(String nodeName){
-        int k = nodeName.lastIndexOf('^');
+        int k = nodeName.lastIndexOf('_');
         if(k<0){
             return nodeName;
         }else{
@@ -72,14 +72,14 @@ public class Graph
 	}
 
 	public void nodeJoin(String firstNode, String secondNode, String connection){
-		String temp = firstNode + "^" + secondNode;
+		String temp = firstNode + "_" + secondNode;
 		createNode(firstNode);
 		createNode(secondNode);
 		System.out.println(nodeList.get(firstNode).getName());
 		(nodeList.get(firstNode)).addRef(nodeList.get(secondNode));
 		(nodeList.get(secondNode)).addRef(nodeList.get(firstNode));
 		if (secondNode.compareTo(firstNode) > 0)
-			temp = secondNode + "^" + firstNode;
+			temp = secondNode + "_" + firstNode;
 		if (edgeList.get(temp) == null)
 			edgeList.put(temp, new Edge(temp, connection));
 		else
