@@ -16,7 +16,9 @@ public class GraphTest{
  			for (String s : centralCandidates){
  				System.out.println(s);
  			}
-
+ 			//System.out.println(marvelUniverse.stringCon("asdf","fsda"));
+ 			//System.out.println(marvelUniverse.stringCon("fsda","asdf"));
+ 			//marvelUniverse.allEdges();
  			/*//Test of sorted Reference output
  			ArrayList<String> centralCandidates = marvelUniverse.mostReferences();
  			for (String s : centralCandidates){
@@ -35,7 +37,7 @@ public class GraphTest{
  			marvelUniverse.nodeJoin("Alex Lam", "Darth Vader", "book4");
  			marvelUniverse.nodeJoin("Darth Vader", "Emperor Palpatine", "book5");
  			marvelUniverse.nodeJoin("Emperor Palpatine", "FrederickTomy", "book6");//node creation works via nodeJoin
- 			ArrayList<String> testZero = (marvelUniverse.bfs("FrederickTomy", "Johnny Depp"));
+ 			ArrayList<String> testZero = (marvelUniverse.bfsNode("FrederickTomy", "Johnny Depp"));
  			for (String s : testZero){
  				System.out.println(s);
  			}
@@ -43,14 +45,14 @@ public class GraphTest{
  			for (String s: test){
  				System.out.println(s);
  			}
- 			/*ArrayList<String> testOne = (marvelUniverse.bfs("SPIDER-MAN/PETER PAR", "VENOM/EDDIE BROCK"));
+ 			ArrayList<String> testOne = (marvelUniverse.bfs("SPIDER-MAN/PETER PAR", "VENOM/EDDIE BROCK"));
  			for (String s: testOne){
  				System.out.println(s);
- 			}*/
- 			/*ArrayList<String> testTwo = (marvelUniverse.bfs("WOLVERINE/LOGAN ", "GREY, JEAN | MUTANT "));
+ 			}
+ 			ArrayList<String> testTwo = (marvelUniverse.bfs("WOLVERINE/LOGAN ", "GREY, JEAN | MUTANT "));
  			for (String s: testTwo){
  				System.out.println(s);
- 			}*/
+ 			}
 			System.out.println(marvelUniverse.isAdjacent("Tony Wong","Princess Leia"));
 			System.out.println(marvelUniverse.isAdjacent("M'SHULLA","FROST, CARMILLA"));
  			System.out.println(marvelUniverse.isAdjacent("FROST, CARMILLA","24-HOUR MAN/EMMANUEL"));

@@ -24,8 +24,26 @@ public class Graph
 		this.edgeList = new HashMap<String, Edge>();
 		}
 
-
 	public ArrayList<String> bfs(String rootNode, String endNode){
+			ArrayList<String> path = bfsNode(rootNode, endNode);
+			ArrayList<String> finalPath= new ArrayList<String>();
+			for(int i=0;i<path.size();i++){
+				finalPath.add(path.get(i));
+				String temp = stringCon(path.get(i),path.get(i+1));
+				//System.out.println(temp);
+				finalPath.add((edgeList.get(temp)).edgeName());
+			}
+			return finalPath;
+	}
+
+	public String stringCon(String firstNode, String secondNode){
+		String temp = firstNode + "_" + secondNode;
+		if (secondNode.compareTo(firstNode) > 0)
+			temp = secondNode + "_" + firstNode;
+		return temp;
+	}
+
+	public ArrayList<String> bfsNode(String rootNode, String endNode){
 		// BFS uses Queue data structure
 		ArrayList<String> previousPath= new ArrayList<String>();
 		ArrayList<String> updatedPath= new ArrayList<String>();
@@ -42,11 +60,11 @@ public class Graph
 					continue;
 				exposeNode(child).visited=true;
 				queue.add(exposeNode(child));
-				updatedPath = (ArrayList<String>)previouspath.clone();
+				updatedPath = (ArrayList<String>)previousPath.clone();
 				updatedPath.add(child);
-				path.add(child,updatedPath());
+				path.put(child,updatedPath);
 				if ((child).equals(endNode)){
-					return updatedPath.get(child);
+					return updatedPath;
 				}
 			}
 		}
@@ -154,6 +172,14 @@ public class Graph
 			System.out.println(entry);
 		}
 	}
+
+	//Method used for test, prints all edges.
+	public void allEdges(){
+		for (String entry : edgeList.keySet()) {
+			System.out.println(entry);
+		}
+	}
+
 
 	/*Creates nodes
 	@params takes nodeName and creates node and stores in HashMap
